@@ -5,7 +5,7 @@ public class Cliente {
 	private int espera;
 	private int retirado;
 	private boolean temlivro;
-	private boolean temespera;
+	private boolean esperando;
 	
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -15,16 +15,40 @@ public class Cliente {
 		return this.nome;
 	}
 	
-	public void setRetirado(int id) {
+	public void setTemlivro(int id) {
 		this.retirado = id;
 		if(id>0) {
-			temlivro = true;
+			this.temlivro = true;
 		}
 		else {
-			temlivro = false;
+			this.temlivro = false;
 		}
 	}
 	
+	public boolean isTemlivro() {
+		return temlivro;
+	}
+
+	public void setTemlivro(boolean temlivro) {
+		this.temlivro = temlivro;
+	}
+
+	public boolean isEsperando() {
+		return esperando;
+	}
+
+	public void setEsperando(boolean esperando) {
+		this.esperando = esperando;
+	}
+
+	public int getEspera() {
+		return espera;
+	}
+
+	public int getRetirado() {
+		return retirado;
+	}
+
 	public void setEspera(int id) {
 		this.espera = id;
 	}
@@ -33,5 +57,12 @@ public class Cliente {
 		return this.temlivro;
 	}
 	
+	public void retirarLivro(Livro livro) {
+		
+	}
+	
+	public void devolverLivro(Livro livro) {
+		
+	}
 	
 }

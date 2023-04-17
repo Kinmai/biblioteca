@@ -7,7 +7,7 @@ public class Livro {
 	private int id;
 	private String nome;
 	private int quantidade;
-	private boolean disponibilidade;
+	private boolean disponivel;
 	List<String> fila = new ArrayList<>();
 	
 	public void setId(int id) {
@@ -18,19 +18,47 @@ public class Livro {
 		this.nome = nome;
 	}
 	
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+
+	public List<String> getFila() {
+		return fila;
+	}
+
+	public void setFila(List<String> fila) {
+		this.fila = fila;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
 	public void setQuantidade(int qte) {
 		this.quantidade = qte;
 	}
 	
 	public boolean checkDispobibilidade() {
 		if(this.quantidade == 0) {
-			this.disponibilidade = false;
+			this.disponivel = false;
 		}
 		if(this.quantidade>0) {
-			this.disponibilidade = true;
+			this.disponivel = true;
 		}
 		
-		return this.disponibilidade;
+		return this.disponivel;
 	}
 	
 	public void colocarNaFila(String user) {
@@ -45,16 +73,16 @@ public class Livro {
 		
 	}
 
-	public void emprestarLivro(Cliente user) {
+	/*public void emprestarLivro(Cliente user) {
 		if(this.quantidade>=1) {
 			this.quantidade--;
-			user.setRetirado(this.id);
+			user.setTemlivro(this.id);
 		}
 		else {
 			colocarNaFila(user.getNome());
 			user.setEspera(this.id);
 		}
-	}
+	}*/
 
 	
 	
