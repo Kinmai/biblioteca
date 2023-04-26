@@ -7,9 +7,32 @@ public class Livro {
 	private int id;
 	private String nome;
 	private int quantidade;
+	private int qteretirada;
 	private boolean disponivel;
-	List<String> fila = new ArrayList<>();
+	private List<String> fila = new ArrayList<>();
 	
+	public Livro(int id, String nome, int qte, int qteretirada) {
+		this.id = id;
+		this.nome = nome;
+		this.quantidade = qte;
+		this.qteretirada = qteretirada;
+		if(qteretirada==qte) {
+			this.disponivel=false;
+		}
+		else {
+			this.disponivel=true;
+		}
+	}
+
+	
+	public int getQteretirada() {
+		return qteretirada;
+	}
+
+	public void setQteretirada(int qteretirada) {
+		this.qteretirada = qteretirada;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -51,10 +74,10 @@ public class Livro {
 	}
 	
 	public boolean checkDispobibilidade() {
-		if(this.quantidade == 0) {
+		if(this.quantidade == this.qteretirada) {
 			this.disponivel = false;
 		}
-		if(this.quantidade>0) {
+		else {
 			this.disponivel = true;
 		}
 		
@@ -68,23 +91,17 @@ public class Livro {
 	public void tirarDaFila(Cliente user) {
 		if(fila.get(0)==user.getNome()) {
 			fila.remove(0);
-			
 		}
 		
 	}
-
-	/*public void emprestarLivro(Cliente user) {
-		if(this.quantidade>=1) {
-			this.quantidade--;
-			user.setTemlivro(this.id);
-		}
-		else {
-			colocarNaFila(user.getNome());
-			user.setEspera(this.id);
-		}
-	}*/
-
 	
+	public void retirar() {
+		this.qteretirada++;
+	}
 	
+	public void devolver() {
+		this.qteretirada--;
+	}
+
 	
 }

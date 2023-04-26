@@ -15,22 +15,16 @@ public class Cliente {
 		return this.nome;
 	}
 	
-	public void setTemlivro(int id) {
-		this.retirado = id;
-		if(id>0) {
-			this.temlivro = true;
-		}
-		else {
-			this.temlivro = false;
-		}
-	}
-	
 	public boolean isTemlivro() {
 		return temlivro;
 	}
 
 	public void setTemlivro(boolean temlivro) {
 		this.temlivro = temlivro;
+	}
+
+	public void setRetirado(int retirado) {
+		this.retirado = retirado;
 	}
 
 	public boolean isEsperando() {
@@ -58,11 +52,21 @@ public class Cliente {
 	}
 	
 	public void retirarLivro(Livro livro) {
-		
+		if(livro.checkDispobibilidade()) {
+			livro.colocarNaFila(this.nome);
+			this.espera = livro.getId();
+		}
+		else {
+			this.retirado = livro.getId();
+			livro.retirar();
+			this.temlivro = true;
+		}
 	}
 	
 	public void devolverLivro(Livro livro) {
-		
+		this.retirado = -1;
+		livro.devolver();
+		this.temlivro = false;
 	}
 	
 }
