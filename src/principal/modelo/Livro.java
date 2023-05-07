@@ -23,7 +23,18 @@ public class Livro {
 			this.disponivel=true;
 		}
 	}
+	
+	public Livro() {
+		
+	}
 
+	public void printLivro() {
+		System.out.println("ID: " + this.id);
+		System.out.println("Titulo: " + this.nome);
+		System.out.println("Quantidade: " + this.quantidade);
+		System.out.println("Disponiveis: " + (this.quantidade -this.qteretirada));
+		System.out.println();
+	}
 	
 	public int getQteretirada() {
 		return qteretirada;
@@ -101,6 +112,12 @@ public class Livro {
 	
 	public void devolver() {
 		this.qteretirada--;
+	}
+	
+	public void printFila() {
+		for(String nome : this.fila) {
+			System.out.println("Nome: " + nome);
+		}
 	}
 
 	

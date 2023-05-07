@@ -7,6 +7,12 @@ public class Cliente {
 	private boolean temlivro;
 	private boolean esperando;
 	
+	public Cliente(String nome, int espera, int retirado) {
+		this.nome = nome;
+		this.espera = espera;
+		this.retirado = retirado;
+	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -52,7 +58,7 @@ public class Cliente {
 	}
 	
 	public void retirarLivro(Livro livro) {
-		if(livro.checkDispobibilidade()) {
+		if(!livro.checkDispobibilidade()) {
 			livro.colocarNaFila(this.nome);
 			this.espera = livro.getId();
 		}
@@ -67,6 +73,19 @@ public class Cliente {
 		this.retirado = -1;
 		livro.devolver();
 		this.temlivro = false;
+	}
+	
+	public void printCliente(Catalogo catalogo) {
+		System.out.println("Nome: " + this.nome);
+		if(retirado>=0) {
+			Livro emprestado = catalogo.getLivro(this.retirado);
+			System.out.println("Livro em posse: " + emprestado.getNome()); 
+		}
+		if(espera>=0) {
+			Livro espera = catalogo.getLivro(this.espera);
+			System.out.println("Livro em espera: " + espera.getNome());
+		}
+		System.out.println();
 	}
 	
 }
